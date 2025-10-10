@@ -12,21 +12,20 @@ def menu():
 value = None
 
 def func():
-    global listok
-    listok = []
-    return listok
+    llist = []
+    return llist
 
 
-def insert(listok, value):
-    listok.append(value)
-    return listok
+def insert(llist, value):
+    llist.append(value)
+    return llist
 
 
 main_list = func()
 
 while True:
     menu()
-    print(main_list)
+    print("list :", main_list)
     choice = input("Choose func: ")
 
     if choice == "1":
@@ -34,18 +33,34 @@ while True:
         insert(main_list, value)
 
     elif choice == "2":
-        if value in listok:
-            listok.pop(0)
-            print("item deleted")
-        else:
+        if not main_list:
             print("no value")
+        else:
+            value = input("Enter what to remove: ")
+            main_list.remove(value)
+            print("item deleted")
         
+        
+
     elif choice == "3":
         main_list.sort()
         print("List sorted")
 
     elif choice == "4":
-        pass
+        new_list = []
+        number = int(input("How much to add? "))
+       
+        while number > 0:
+            value = input("Enter value: ")
+            new_list.append(value)
+            number = number - 1
+            if number is 0:
+                break
+        else:
+            print("WRONG")
+        for value in new_list:
+            main_list.append(value)
+        main_list.sort()
 
     else:
         break
