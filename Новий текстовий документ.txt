@@ -11,20 +11,20 @@ def menu():
 value = None
 
 def func():
-    listok = []
-    return listok
+    llist = []
+    return llist
 
 
-def insert(listok, value):
-    listok.append(value)
-    return listok
+def insert(llist, value):
+    llist.append(value)
+    return llist
 
 
 main_list = func()
 
 while True:
     menu()
-    print(main_list)
+    print("list :", main_list)
     choice = input("Choose func: ")
 
     if choice == "1":
@@ -32,13 +32,15 @@ while True:
         insert(main_list, value)
 
     elif choice == "2":
-        if value in main_list:
+        if not main_list:
+            print("no value")
+        else:
             value = input("Enter what to remove: ")
             main_list.remove(value)
             print("item deleted")
-        else:
-            print("no value")
         
+        
+
     elif choice == "3":
         main_list.sort()
         print("List sorted")
