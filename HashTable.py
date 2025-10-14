@@ -30,9 +30,21 @@ def insert(value):
 
         if index == original_index:
             print("")
-            print("HashTable is full! Can't insert more.")
+            print("HashTable is full. Cant insert more.")
             return
         
+def search(value):
+    index = hash_func(value)
+    if HashTable[index] == value:
+            print("")
+            print(f"{value} found at index {index}")
+            return index
+        
+    if HashTable[index] is None:
+        print("")
+        print(f"{value} not found in table")
+        return None
+
 def expand():
     global HashTable, size
     size += 1
@@ -45,11 +57,11 @@ def expand():
 def menu():
     print("1 = add")
     print("2 = ")
-    print("3 = ")
+    print("3 = search")
     print("4 = expand")
 
 while True:
-    print("Lengh of table:",len(HashTable))
+    print(f"Lengh of table: {len(HashTable)}")
     menu()
     print("HashTable is ",HashTable)
     choice = input("Enter func: ")
@@ -58,6 +70,10 @@ while True:
         case "1":
             value = input("insert: ")
             insert(value)
+
+        case "3":
+            value = input("What you looking for?: ")
+            search(value)
 
         case "4":
             expand()
