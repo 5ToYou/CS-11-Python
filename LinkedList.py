@@ -59,12 +59,12 @@ class LinkedList:
         self.sort()
 
     def show(self):
-        elements = []
         current = self.head
         while current:
-            elements.append(current.data)
+            print(current.data,end=" -> ")
             current = current.next
-        print("List:", elements)
+        else:
+            print(None)
 
 
 def menu():
@@ -82,6 +82,7 @@ while True:
 
     choice = input("Choose func: ")
     match choice:
+    
         case "1":
             value = input("What to add: ")
             linked_list.insert(value)
