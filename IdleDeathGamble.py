@@ -2,25 +2,15 @@ import random
 
 tickets = 1000
 
-print(" if you need more tickets press 1")
+print("if you need more tickets press 1")
+
 
 while True:
     slot1 = random.randint(1,9)
     slot2 = random.randint(1,9)
     slot3 = random.randint(1,9)
 
-    
     print(f"You have {tickets} tickets")
-
-    
-
-    if slot1 == slot2 == slot3:
-        tickets += 10000
-        print(f" = {slot1} {slot2} {slot3} = ")
-        print("  JACKPOT")
-
-
-
 
     choice = input("Press Enter to roll: ")
     match choice:
@@ -31,9 +21,15 @@ while True:
                 print()
             if tickets >= 100:
                 tickets -= 100
-                print()
-                print(f" = {slot1} {slot2} {slot3} = ")
-                print()
+                if slot1 == slot2 == slot3:
+                    tickets += 10000
+                    print("  JACKPOT")
+                    print(f" = {slot1} {slot2} {slot3} = ")
+                    print("  JACKPOT")
+                else:
+                    print()
+                    print(f" = {slot1} {slot2} {slot3} = ")
+                    print()
 
         case "1":
             tickets += 1000
