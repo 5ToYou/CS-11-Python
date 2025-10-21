@@ -78,9 +78,9 @@ def menu():
     print("2 = acces drink")
     print("3 = add drink")
     print("4 = add random drink")
-    print("5 = end program")
+    print("5 = end program\n")
 
-print("--WELCOME TO DRINK SIMULATOR--")
+print("\n--WELCOME TO DRINK SIMULATOR--\n")
 
 while True:
     
