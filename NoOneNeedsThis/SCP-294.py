@@ -59,9 +59,11 @@ def have_a_drink(choose,health):
     temp = info["temperature"]
     if temp >= 100:
         print("You died from heavy burns")
+        del drinks[choose]
         return 0
     elif temp >= 70:
         print("You got heavy injuries from that drink")
+        del drinks[choose]
         return health - 50
     else:
         print("Yummy")
@@ -77,6 +79,8 @@ def menu():
     print("3 = add drink")
     print("4 = add random drink")
     print("5 = end program")
+
+print("--WELCOME TO DRINK SIMULATOR--")
 
 while True:
     
