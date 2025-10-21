@@ -79,7 +79,7 @@ def menu():
     print("5 = end program")
 
 while True:
-
+    
     if not is_alive(health):
         print("You are dead")
         break
