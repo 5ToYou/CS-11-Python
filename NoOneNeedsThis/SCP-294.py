@@ -2,24 +2,37 @@ import random
 
 drinks = {}
 health = 100
+color_palette = ["red","orange","yellow","green","blue","purple","pink","white","black"]
 
 def create_drink(drink_name):
-    temp = float(input("drink temperature (in °C): "))
-    glow = input("is drink glowing?(yes/no): ").lower() == "yes"
+    while True:
+        color = input("color of your drink: ").lower()
+        if color in color_palette:
+            try:
+                temp = float(input("drink temperature (in °C): "))
+                glow = input("is drink glowing?(yes/no): ").lower() == "yes"
+                break
+            except ValueError:
+                print(f"Invalid temperature. Please enter a numerical value.")
+        else:
+            print(f"color {color} dont exist")
 
     drinks[drink_name] = {
         "randomized": False,
+        "color": color,
         "temperature": temp,
         "glow": glow,
     }
     print(f"drink '{drink_name}' created")
-    
+
 def create_random_drink(drink_name):
     temp = random.randint(1,140)
     glow = random.choice(["yes", "no"])
-
+    color = random.choice(color_palette)
+    
     drinks[drink_name] = {
         "randomized": True,
+        "color": color,
         "temperature": temp,
         "glow": glow,
     }
@@ -29,11 +42,13 @@ def acces_drink(choose):
     if choose in drinks:
         info = drinks[choose]
         print(f"drink: {choose}")
-        
+
         if info["randomized"]:
+            print("color: ?")
             print("temperature: ?")
             print("glowing: ?")
         else:
+            print(f"color: {info['color']}")
             print(f"temperature: {info['temperature']} °C")
             print(f"glowing: {info['glow']}")
     else:
@@ -64,26 +79,38 @@ def menu():
     print("5 = end program")
 
 while True:
+
     if not is_alive(health):
         print("You are dead")
         break
 
-    menu()   
-    choice = input("Enter what you want to do: ")
+    menu()
+    while True:
+        try:   
+            choice = input("Enter what you want to do: ")
+            break
+        except ValueError:
+            print(f"{choice} dont match")
+
     match choice:
 
         case "1":
-            print(list(drinks))
+            if not drinks:
+                print("There is no drinks")
+            else:
+                print(f"Available drinks: {list(drinks)}")
 
         case "2":
             choose = input("choose drink you want: ")
             acces_drink(choose)
-            drink_it = input("Want to drink it?: ")
-            drink_it.lower()
-            if drink_it == "yes":
-                health = have_a_drink(choose, health)
+            if choose in drinks:
+                drink_it = input("Want to drink it? (yes/no): ").lower()
+                if drink_it == "yes":
+                    health = have_a_drink(choose, health)
+                else:
+                    print("Your choice man...")
             else:
-                print("Your choice man...")
+                pass
 
         case "3":
             drink_name = input("Enter drink name: ")
@@ -98,4 +125,4 @@ while True:
             break
 
         case _:
-            print(f"{choice} is not valid")
+            print(f"{choice} invalid")
