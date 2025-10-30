@@ -25,7 +25,7 @@ class graph:
             print()
 
 
-    def dfs(self, start, visited=None):
+    def dfs(self, start, visited = None):
         if visited is None:
             visited = [False] * self.size
 
@@ -36,14 +36,14 @@ class graph:
             if self.matrix[start][i] == 1 and not visited[i]:
                 self.dfs(i, visited)
 
-    # BFS (в ширину) без deque
+
     def bfs(self, start):
         visited = [False] * self.size
         queue = [start]
         visited[start] = True
 
         while queue:
-            vertex = queue.pop(0)  # забираємо перший елемент
+            vertex = queue.pop(0)
             print(vertex, end=" ")
 
             for i in range(self.size):
@@ -54,15 +54,15 @@ class graph:
         
 if __name__ == "__main__":
     g = graph(6)
-    g.add_edge(0,1)
-    g.add_edge(0,2)
-    g.add_edge(1,3)
-    g.add_edge(2,1)
-    g.add_edge(3,4)
-    g.add_edge(4,5)
-    g.add_edge(1,5)
-    g.add_edge(2,4)
+    g.add_edge(0, 1)  # a-b
+    g.add_edge(0, 3)  # a-d
+    g.add_edge(1, 2)  # b-c
+    g.add_edge(1, 3)  # b-d
+    g.add_edge(1, 4)  # b-e
+    g.add_edge(2, 3)  # c-d
+    g.add_edge(2, 5)  # c-f
     
+    print("Matrix")
     g.display()
 
     print("\nDFS starting from vertex 0:")
