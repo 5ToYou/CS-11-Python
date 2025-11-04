@@ -1,10 +1,14 @@
 import time
+start_time = time.perf_counter()
 
-mytime = int(input("Enter timeL "))
+arr = [4,8,-2,6,14,3,10,5,-54,3,11,64,30,0,-7,4,-66]
 
-for x in range(mytime, 0, -1):
-    print(x)
+lengh = len(arr)
+for x in range(lengh - 1):
+    for y in range(lengh - x - 1):
+        if arr[y] > arr[y + 1]:
+            arr[y],arr[y + 1] = arr[y + 1],arr[y]
 
-    time.sleep(1)
-
-print("ITs demo")
+end_time = time.perf_counter()
+elapsed_time = end_time - start_time
+print(f"{arr}, {elapsed_time:.10f}")
