@@ -1,5 +1,8 @@
 input_data = 'BCAADDCAADDDEAABB'
 
+import time
+start_time = time.perf_counter()
+
 class Node(object):
 
     def __init__(self,left_node = None,right_node = None):
@@ -48,6 +51,8 @@ huffman_code = huffman(nodes[0][0])
 for (char,frequency) in freq:
     print('%-4r | %12s' %(char,huffman_code[char]))
 
-
+end_time = time.perf_counter()
+elapsed_time = end_time - start_time
+print(f"\nelapsed time: {elapsed_time:.10f}")
 
 
